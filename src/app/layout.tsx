@@ -1,8 +1,9 @@
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
-import {Providers} from "./providers";
-import Header from "@/components/UI/Header"
+import {Providers} from "@/providers/provider";
+import Header from "@/components/UI/header"
+import { siteConfigs } from "@/config/app.config"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,8 +16,8 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Welcome home ISA",
-  description: "It is not important part here cose it is my own app NOT for searching by bots",
+  title: siteConfigs.metadata.title,
+  description: siteConfigs.metadata.description,
 }
 
 export default function RootLayout({
