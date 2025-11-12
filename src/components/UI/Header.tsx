@@ -13,7 +13,7 @@ export const Logo = () => {
       alt="ISA own website"
       width={56}
       height={56}
-      priority
+      preload
     />
   )
 }
