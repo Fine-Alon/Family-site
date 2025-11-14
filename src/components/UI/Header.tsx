@@ -65,10 +65,10 @@ export default function Header() {
         </NavbarItem>
         <NavbarItem>
           <Button as={Link} color="primary" href="#" variant="flat">
-            Sign Up
-          </Button>
+            Sign Up   
+          </Button>  
         </NavbarItem>
       </NavbarContent>
     </Navbar>
   )
-}
+} //.                  по нажатию на    Sign Up    сделать модалку. !!!!

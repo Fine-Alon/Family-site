@@ -32,7 +32,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>
-          <header>
+          <header style={{height:`${layoutConfig.header.height}`}}>
             <Header />
           </header>
 
@@ -42,7 +42,7 @@ export default function RootLayout({
             }}>
             {children}
           </main>
-          <footer className={`flex h-[${layoutConfig.footer.height}] justify-center items-center`}>
+          <footer className={`flex justify-center items-center`} style={{height:`${layoutConfig.footer.height}`}}>
             <p>REMINDER FOR YOURSELF TAKE EVERYTHING EASER, make randomizer with fraises</p>
           </footer>
         </Providers>
