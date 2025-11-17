@@ -100,13 +100,13 @@ export const FormRegistration = ({ onFormClose }: IProps) => {
         }}
       />
       <Input
-        required
+        isRequired
         errorMessage="passwords are NOT the same"
         name="confirmPassword"
         label="confirm password"
         labelPlacement="outside"
         type="password"
-        placeholder="repeat password"
+        placeholder="Repeat password"
         classNames={{
           inputWrapper: 'bg-default-100',
           input: 'text-sm focus:outline-none'

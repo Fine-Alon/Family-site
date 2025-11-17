@@ -6,6 +6,7 @@ import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Button } from "@heroui/
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import SignUpBtn from "./sign-up-btn"
 
 export const Logo = () => {
   return (
@@ -64,9 +65,7 @@ export default function Header() {
           <Link href="#"> </Link>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="flat">
-            Sign Up   
-          </Button>  
+          <SignUpBtn />
         </NavbarItem>
       </NavbarContent>
     </Navbar>
