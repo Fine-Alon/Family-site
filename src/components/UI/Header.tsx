@@ -6,7 +6,9 @@ import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Button } from "@heroui/
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import SignUpBtn from "./sign-up-btn"
+import SignUpBtn from "../modals/sign-up"
+import { useState } from "react"
+import LoginBtn from "../modals/login"
 
 export const Logo = () => {
   return (
@@ -22,6 +24,8 @@ export const Logo = () => {
 
 export default function Header() {
   const currentActiveLink = usePathname()
+  const [isSignUpOpen, setIsSignUpOpen] = useState(false)
+  const [isLoginOpen, setIsLoginOpen] = useState(false)
 
   const getNavBarItems = () => {
     return siteConfigs.navBarItems.map(menuItem => {
@@ -45,6 +49,10 @@ export default function Header() {
     })
   }
 
+  const handelLoginClose = () => {
+    setIsLoginOpen(!isLoginOpen)
+  }
+
 
   return (
     <Navbar className={`h-[${layoutConfig.header.height}]`}>
@@ -64,9 +72,19 @@ export default function Header() {
         <NavbarItem className="hidden lg:flex">
           <Link href="#"> </Link>
         </NavbarItem>
+
         <NavbarItem>
-          <SignUpBtn />
+          <Button variant="shadow" className="bg-purple-500 text-purple-50 font-mono font-bold italic" onPress={() => { setIsSignUpOpen(true) }}>
+            Sign Up <SignUpBtn isFormOpen={isSignUpOpen} onFormClose={() => setIsSignUpOpen(!isSignUpOpen)} />
+          </Button>
         </NavbarItem>
+
+        <NavbarItem>
+          <Button variant="shadow" className="bg-pink-500 text-purple-50 font-mono font-bold italic" onPress={() => { setIsLoginOpen(true) }}>
+            Login <LoginBtn isFormOpen={isLoginOpen} onFormClose={() => setIsLoginOpen(!isLoginOpen)} />
+          </Button>
+        </NavbarItem>
+
       </NavbarContent>
     </Navbar>
   )

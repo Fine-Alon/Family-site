@@ -1,3 +1,6 @@
+'use client'
+
+
 import { useState } from "react"
 import { Form, Input, Button } from "@heroui/react"
 
@@ -28,7 +31,6 @@ export const FormRegistration = ({ onFormClose }: IProps) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     return emailRegex.test(email.trim())
   }
-
   const validateName = (name: string) => {
     if (typeof name !== 'string' || name.trim() === '') return false
     const nameRegex = /^[\p{L}\s\-']+$/u
@@ -117,6 +119,7 @@ export const FormRegistration = ({ onFormClose }: IProps) => {
           return null
         }}
       />
+
       <div>
         <Button variant="light" onPress={onFormClose} >
           Cancel
@@ -125,6 +128,7 @@ export const FormRegistration = ({ onFormClose }: IProps) => {
           Confirm and sent
         </Button>
       </div>
+
       {formData && (
         <div className="text-small text-default-500">
           You sent data as: <code>{JSON.stringify(formData)}</code>

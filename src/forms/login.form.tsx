@@ -71,6 +71,7 @@ export const FormLogin = ({ onFormClose }: IProps) => {
           Confirm and sent
         </Button>
       </div>
+      
       {formData && (
         <div className="text-small text-default-500">
           You sent data as: <code>{JSON.stringify(formData)}</code>
