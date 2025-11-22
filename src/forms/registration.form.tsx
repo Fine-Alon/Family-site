@@ -3,6 +3,7 @@
 
 import { useState } from "react"
 import { Form, Input, Button } from "@heroui/react"
+import { registerUser } from "@/actions/prisma.register"
 
 
 interface IProps {
@@ -16,13 +17,15 @@ export const FormRegistration = ({ onFormClose }: IProps) => {
     name: '',
     password: '',
     confirmPassword: '',
-    phone: '',
     // agreeToTerms: false, // if you have a checkbox
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
+
     e.preventDefault()
     console.log('Form submitted successfully', formData)
+
+    registerUser(formData)
     onFormClose()
   }
 
