@@ -1,6 +1,6 @@
 "use server"
 import { IFormData } from "@/types/form-data"
-import { prisma } from "@/utils/prisma"
+import prisma from "@/utils/prisma"
 import path from "node:path"
 
 

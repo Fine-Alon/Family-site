@@ -25,7 +25,10 @@ export const FormRegistration = ({ onFormClose }: IProps) => {
     e.preventDefault()
     console.log('Form submitted successfully', formData)
 
-    registerUser(formData)
+    const result = await registerUser(formData)
+
+    console.log('result: ', result);
+    
     onFormClose()
   }
 
