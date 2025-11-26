@@ -5,6 +5,7 @@ import { Providers } from "@/providers/provider"
 import Header from "@/components/UI/header"
 import { siteConfigs } from "@/config/app.config"
 import { layoutConfig } from "@/config/layout.config"
+import { auth } from "./auth/auth"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,11 +22,15 @@ export const metadata: Metadata = {
   description: siteConfigs.metadata.description,
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+
+  const session = await auth()
+  if (!session?.user) return <div>Гость, заходи</div>
+  
   return (
     <html lang="en">
       <body
