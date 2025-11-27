@@ -1,5 +1,7 @@
 import { object, string } from "zod"
  
+//  TODO: мигрировать zod на v3 новый синтаксис
+
 export const signInSchema = object({
   email: string({ required_error: "Email is required" })
     .min(1, "Email is required")
