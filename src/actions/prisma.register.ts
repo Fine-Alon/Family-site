@@ -1,10 +1,11 @@
 "use server"
-import { IFormData } from "@/types/form-data"
+
+import { IFormRegData } from "@/types/form-data"
 import prisma from "@/utils/prisma"
 import path from "node:path"
 
 
-export const registerUser = async (formData: IFormData) => {
+export const registerUser = async (formData: IFormRegData) => {
 
   const { name, email, password, confirmPassword } = formData
 

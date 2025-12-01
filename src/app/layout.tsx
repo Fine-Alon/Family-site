@@ -28,16 +28,25 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
 
+  // TODO: логика при без сессии ?
   const session = await auth()
-  if (!session?.user) return <div>Гость, заходи</div>
-  
+  // if (!session?.user) {
+  //   return <html lang="en">
+  //     <body
+  //       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+  //     >
+  //       <div>Гость, заходи</div>
+  //     </body>
+  //   </html>
+  // }
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>
-          <header style={{height:`${layoutConfig.header.height}`}}>
+          <header style={{ height: `${layoutConfig.header.height}` }}>
             <Header />
           </header>
 
@@ -47,7 +56,7 @@ export default async function RootLayout({
             }}>
             {children}
           </main>
-          <footer className={`flex justify-center items-center`} style={{height:`${layoutConfig.footer.height}`}}>
+          <footer className={`flex justify-center items-center`} style={{ height: `${layoutConfig.footer.height}` }}>
             <p>REMINDER FOR YOURSELF TAKE EVERYTHING EASER, make randomizer with fraises</p>
           </footer>
         </Providers>

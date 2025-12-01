@@ -2,12 +2,11 @@ import { signInSchema } from "@/schema/zod"
 import NextAuth from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 import { ZodError } from "zod"
-
-// Your own logic for dealing with plaintext password strings; be careful!
-import { saltAndHashPassword } from "@/utils/password"
 import { getUserFromDb } from "@/utils/db"
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import prisma from "@/utils/prisma"
+// TODO: may be change bcryptjs to bcrypt. js
+import bcryptjs from "bcryptjs"
 
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
@@ -29,7 +28,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       //  authorize  -  checks and validate credentials(учетные данные) of users  +  returns data to create session
       authorize: async (credentials) => {
         try {
-          
+
           if (!credentials?.email || !credentials?.password) {
             throw new Error("Password and Email are necessary to fill")
           }
@@ -40,23 +39,35 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           // const pwHash = saltAndHashPassword(credentials.password)
 
           // logic to verify if the user exists
-          const user = await getUserFromDb(credentials.email)
+          const user = await getUserFromDb(email)
 
-          if (!user) {
+          if (!user || !user.password) {
             // No user found, so this is their first attempt to login
             // Optionally, this is also the place you could do a user registration
             throw new Error("Invalid credentials.")
           }
 
-          // return user object with their profile data
-          return user
+          const isPasswordValid = await bcryptjs.compare(
+            password,
+            user.password
+          )
+
+          if (!isPasswordValid) {
+            throw new Error("Credentials are NOT correct!")
+          }
+
+          // return JSON object with user profile data
+          return { id: user.id, email: user.email }
+
         } catch (error) {
           if (error instanceof ZodError) {
             // Return `null` to indicate that the credentials are invalid
             return null
           }
+          return null
         }
       },
     })
   ],
 })
+

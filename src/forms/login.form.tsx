@@ -1,5 +1,8 @@
+'use client'
+
 import { useState } from "react"
 import { Form, Input, Button } from "@heroui/react"
+import { authorizeUser } from "@/actions/prisma.login"
 
 
 interface IProps {
@@ -17,9 +20,10 @@ export const FormLogin = ({ onFormClose }: IProps) => {
     // agreeToTerms: false, // if you have a checkbox
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('Form submitted successfully', formData)
+    await authorizeUser(formData)
+    console.log('Form authorize submitted successfully', formData)
     onFormClose()
   }
 
@@ -71,7 +75,7 @@ export const FormLogin = ({ onFormClose }: IProps) => {
           Confirm and sent
         </Button>
       </div>
-      
+
       {formData && (
         <div className="text-small text-default-500">
           You sent data as: <code>{JSON.stringify(formData)}</code>
