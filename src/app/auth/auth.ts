@@ -8,6 +8,8 @@ import prisma from "@/utils/prisma"
 // TODO: may be change bcryptjs to bcrypt. js
 import bcryptjs from "bcryptjs"
 
+//// TODO: signOut.   signOut.   signOut.  signOut
+
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),

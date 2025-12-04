@@ -9,6 +9,7 @@ import { usePathname } from "next/navigation"
 import SignUpBtn from "../modals/sign-up"
 import { useState } from "react"
 import LoginBtn from "../modals/login"
+import { SignOutBtn } from "./sign-out-btn"
 
 export const Logo = () => {
   return (
@@ -26,6 +27,10 @@ export default function Header() {
   const currentActiveLink = usePathname()
   const [isSignUpOpen, setIsSignUpOpen] = useState(false)
   const [isLoginOpen, setIsLoginOpen] = useState(false)
+
+  // TODO: make a real session check
+  const [isSessionExist, SetIsSessionExist] = useState(true)
+
 
   const getNavBarItems = () => {
     return siteConfigs.navBarItems.map(menuItem => {
@@ -73,18 +78,22 @@ export default function Header() {
           <Link href="#"> </Link>
         </NavbarItem>
 
-        <NavbarItem>
-          <Button variant="shadow" className="bg-purple-500 text-purple-50 font-mono font-bold italic" onPress={() => { setIsSignUpOpen(true) }}>
-            Sign Up <SignUpBtn isFormOpen={isSignUpOpen} onFormClose={() => setIsSignUpOpen(!isSignUpOpen)} />
-          </Button>
-        </NavbarItem>
+        {isSessionExist
+          ? <SignOutBtn />
 
-        <NavbarItem>
-          <Button variant="shadow" className="bg-pink-500 text-purple-50 font-mono font-bold italic" onPress={() => { setIsLoginOpen(true) }}>
-            Login <LoginBtn isFormOpen={isLoginOpen} onFormClose={() => setIsLoginOpen(!isLoginOpen)} />
-          </Button>
-        </NavbarItem>
+          : <>
+            <NavbarItem>
+              <Button variant="shadow" className="bg-purple-500 text-purple-50 font-mono font-bold italic" onPress={() => { setIsSignUpOpen(true) }}>
+                Sign Up <SignUpBtn isFormOpen={isSignUpOpen} onFormClose={() => setIsSignUpOpen(!isSignUpOpen)} />
+              </Button>
+            </NavbarItem>
 
+            <NavbarItem>
+              <Button variant="shadow" className="bg-pink-500 text-purple-50 font-mono font-bold italic" onPress={() => { setIsLoginOpen(true) }}>
+                Login <LoginBtn isFormOpen={isLoginOpen} onFormClose={() => setIsLoginOpen(!isLoginOpen)} />
+              </Button>
+            </NavbarItem>
+          </>}
       </NavbarContent>
     </Navbar>
   )

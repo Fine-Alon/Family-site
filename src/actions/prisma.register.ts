@@ -17,9 +17,8 @@ export const registerUser = async (formData: IFormRegData) => {
         password: password
       }
     })
-    console.log('user: ', user)
-    console.log(`Error in ${path.basename(__filename)}`)
 
+    console.log('user to be REGISTERED: ', user)
     return user
 
   } catch (error) {

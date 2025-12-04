@@ -11,14 +11,7 @@ interface IProps {
 
 export const FormLogin = ({ onFormClose }: IProps) => {
 
-  const [formData, setFormData] = useState({
-    email: '',
-    name: '',
-    password: '',
-    confirmPassword: '',
-    phone: '',
-    // agreeToTerms: false, // if you have a checkbox
-  })
+  const [formData, setFormData] = useState({ email: '', password: '' })
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
