@@ -79,7 +79,10 @@ export default function Header() {
         </NavbarItem>
 
         {isSessionExist
-          ? <SignOutBtn />
+          ? <> <NavbarItem>
+            <SignOutBtn />
+          </NavbarItem>
+          </>
 
           : <>
             <NavbarItem>
