@@ -19,15 +19,14 @@ export const registerUser = async (formData: IFormRegData) => {
   }
 
   try {
-    const isUserExist = prisma.user.findUnique({
-      where: {email}})
+    const isUserExist = await prisma.user.findUnique({ where: { email } })
 
-    if (!isUserExist) {
-       return { success: false, error: 'User with same password already exist' }
+    if (isUserExist) {
+      return { success: false, error: 'User with same password already exist' }
     }
 
-
     const pwHash = await saltAndHashPassword(password)
+
     const user = await prisma.user.create({
       data: {
         email: email,
@@ -36,7 +35,7 @@ export const registerUser = async (formData: IFormRegData) => {
       }
     })
 
-    console.log('user to be REGISTERED: ', user)
+    console.log('\n User to be REGISTERED: ', user)
     return user
 
   } catch (error) {

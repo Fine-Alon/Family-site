@@ -16,7 +16,7 @@ export const FormLogin = ({ onFormClose }: IProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     await authorizeUser(formData)
-    console.log('Form authorize submitted successfully', formData)
+    console.log('\nAuthorize form submitted successfully', formData)
     onFormClose()
   }
 

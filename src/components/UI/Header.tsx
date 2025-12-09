@@ -78,10 +78,10 @@ export default function Header() {
           <Link href="#"> </Link>
         </NavbarItem>
 
-        {isSessionExist
+        {!isSessionExist
           ? <> <NavbarItem>
             <SignOutBtn />
-          </NavbarItem>
+          </NavbarItem>   
           </>
 
           : <>
