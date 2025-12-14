@@ -10,6 +10,7 @@ import SignUpBtn from "../modals/sign-up"
 import { useState } from "react"
 import LoginBtn from "../modals/login"
 import { SignOutBtn } from "./sign-out-btn"
+import { useSession } from "next-auth/react"
 
 export const Logo = () => {
   return (
@@ -27,9 +28,12 @@ export default function Header() {
   const currentActiveLink = usePathname()
   const [isSignUpOpen, setIsSignUpOpen] = useState(false)
   const [isLoginOpen, setIsLoginOpen] = useState(false)
+  const { data: session, status } = useSession()
+  
+  console.log(session);
+  
 
-  // TODO: make a real session check
-  const [isSessionExist, SetIsSessionExist] = useState(true)
+  const isAuth = status === 'authenticated'
 
 
   const getNavBarItems = () => {
@@ -77,11 +81,12 @@ export default function Header() {
         <NavbarItem className="hidden lg:flex">
           <Link href="#"> </Link>
         </NavbarItem>
-
-        {!isSessionExist
+        {isAuth && <p>Hello, {session?.user?.name}!</p>
+        }
+        {isAuth
           ? <> <NavbarItem>
             <SignOutBtn />
-          </NavbarItem>   
+          </NavbarItem>
           </>
 
           : <>

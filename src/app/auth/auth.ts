@@ -5,7 +5,6 @@ import { ZodError } from "zod"
 import { getUserFromDb } from "@/utils/db"
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import prisma from "@/utils/prisma"
-// TODO: may be change bcryptjs to bcrypt. js
 import bcrypt from "bcryptjs"
 
 
@@ -53,18 +52,38 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           }
 
           // return JSON object with user profile data
-          return { id: user.id, email: user.email }
+          return { id: user.id, email: user.email, name: user.name }
 
         } catch (error) {
           if (error instanceof ZodError) {
             // Return `null` to indicate that the credentials are invalid
             return null
           }
-          console.error("Unexpected error in authorize:", error);
+          console.error("Unexpected error in authorize:", error)
           return null
         }
       },
     })
   ],
+  session: { strategy: "jwt", maxAge: 3600 },
+  secret: process.env.NEXTAUTH_SECRET,
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id
+        token.name = user.name
+        token.email = user.email
+      }
+      return token
+    },
+    async session({session,token}){
+      if (token) {
+        session.user.id = token.id as string
+        session.user.email = token.email as string
+        session.user.name = token.name as string
+      }
+      return session
+    }
+  }
 })
 

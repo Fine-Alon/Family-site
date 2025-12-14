@@ -6,6 +6,7 @@ import Header from "@/components/UI/header"
 import { siteConfigs } from "@/config/app.config"
 import { layoutConfig } from "@/config/layout.config"
 import { auth } from "./auth/auth"
+import { SessionProvider } from "next-auth/react"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,7 +29,7 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
 
-  // TODO: логика при без сессии ?
+  // TODO: логика при и без сессии ?
   const session = await auth()
   // if (!session?.user) {
   //   return <html lang="en">
@@ -45,7 +46,7 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Providers>
+        <Providers session={session}>
           <header style={{ height: `${layoutConfig.header.height}` }}>
             <Header />
           </header>
@@ -62,6 +63,6 @@ export default async function RootLayout({
         </Providers>
 
       </body>
-    </html>
+    </html >
   )
 }

@@ -26,7 +26,7 @@ export const authorizeUser = async (formData: IFormLoginData) => {
     })
     console.log('\nuser to be UPDATED: ', user)
 
-   
+
     return { success: result.success }
 
   } catch (error) {
