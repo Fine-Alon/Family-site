@@ -19,7 +19,8 @@ export const FormLogin = ({ onFormClose }: IProps) => {
     console.log('\nAuthorize form submitted successfully', formData)
     onFormClose()
   }
-// TODO: correct validation
+  
+  // TODO: correct validation
   const validatePassword = (password: string) => {
     if (typeof password !== 'string' || password.trim() === '') return false
     return true

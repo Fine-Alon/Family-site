@@ -3,37 +3,26 @@
 import { siteConfigs } from "@/config/app.config"
 import { layoutConfig } from "@/config/layout.config"
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Button } from "@heroui/react"
-import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import SignUpBtn from "../modals/sign-up"
 import { useState } from "react"
 import LoginBtn from "../modals/login"
 import { SignOutBtn } from "./sign-out-btn"
-import { useSession } from "next-auth/react"
+import { useAuthStore } from "@/store/auth.store"
+import { Logo } from "./logo"
 
-export const Logo = () => {
-  return (
-    <Image
-      src={'/Gemini_Generated_Image_6k7xcj6k7xcj6k7x.png'}
-      alt="ISA own website"
-      width={56}
-      height={56}
-      preload
-    />
-  )
-}
+
 
 export default function Header() {
   const currentActiveLink = usePathname()
   const [isSignUpOpen, setIsSignUpOpen] = useState(false)
   const [isLoginOpen, setIsLoginOpen] = useState(false)
-  const { data: session, status } = useSession()
-  
-  console.log(session);
-  
 
-  const isAuth = status === 'authenticated'
+  const { isAuth, session, status, setAuthState } = useAuthStore()
+
+  console.log('session:  ', session)
+  console.log('status:  ', status)
 
 
   const getNavBarItems = () => {
@@ -85,7 +74,7 @@ export default function Header() {
         }
         {isAuth
           ? <> <NavbarItem>
-            <SignOutBtn />
+            <SignOutBtn onSignOut={handelLoginClose} />
           </NavbarItem>
           </>
 

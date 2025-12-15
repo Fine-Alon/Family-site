@@ -8,11 +8,11 @@ export const signOutUser = async () => {
   try {
     const result = await signOut({ redirect: false })
 
-    console.log('result: ', result);
+    console.log('result signOut: ', result);
     return result
 
   } catch (error) {
-    console.log('error: ', error);
+    console.log('error signOut: ', error);
     
     throw error
   }
