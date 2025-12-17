@@ -16,6 +16,4 @@ export const signOutUser = async () => {
     
     throw error
   }
-
-  
 }

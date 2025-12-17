@@ -6,7 +6,7 @@ import Header from "@/components/UI/header"
 import { siteConfigs } from "@/config/app.config"
 import { layoutConfig } from "@/config/layout.config"
 import { auth } from "./auth/auth"
-import { SessionProvider } from "next-auth/react"
+import AuthSyncProvider from "@/hoc/app-loader"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,15 +31,6 @@ export default async function RootLayout({
 
   // TODO: логика при и без сессии ?
   const session = await auth()
-  // if (!session?.user) {
-  //   return <html lang="en">
-  //     <body
-  //       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-  //     >
-  //       <div>Гость, заходи</div>
-  //     </body>
-  //   </html>
-  // }
 
   return (
     <html lang="en">
@@ -47,19 +38,18 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Providers session={session}>
-          <header style={{ height: `${layoutConfig.header.height}` }}>
+          <AuthSyncProvider>
             <Header />
-          </header>
-
-          <main className={`flex flex-col w-full justify-center items-center`}
-            style={{
-              height: `calc(100vh - ${layoutConfig.header.height} - ${layoutConfig.footer.height})`
-            }}>
-            {children}
-          </main>
-          <footer className={`flex justify-center items-center`} style={{ height: `${layoutConfig.footer.height}` }}>
-            <p>REMINDER FOR YOURSELF TAKE EVERYTHING EASER, make randomizer with fraises</p>
-          </footer>
+            <main className={`flex flex-col w-full justify-center items-center`}
+              style={{
+                height: `calc(100vh - ${layoutConfig.header.height} - ${layoutConfig.footer.height})`
+              }}>
+              {children}
+            </main>
+            <footer className={`flex justify-center items-center`} style={{ height: `${layoutConfig.footer.height}` }}>
+              <p>REMINDER FOR YOURSELF TAKE EVERYTHING EASER, make randomizer with fraises</p>
+            </footer>
+          </AuthSyncProvider>
         </Providers>
 
       </body>

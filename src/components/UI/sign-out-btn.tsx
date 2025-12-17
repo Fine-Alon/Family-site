@@ -17,7 +17,8 @@ export const SignOutBtn = ({ onSignOut }: ISignOutBtnProps) => {
   const handleSignOutUser = async () => {
     try {
       await signOutUser()
-      const logOut = onSignOut("unauthenticated", null)
+      onSignOut("unauthenticated", null)
+      
 
     } catch (error) {
       console.log('\nerror:   ', error)

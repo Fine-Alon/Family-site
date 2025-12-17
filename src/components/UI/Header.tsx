@@ -20,10 +20,9 @@ export default function Header() {
   const [isLoginOpen, setIsLoginOpen] = useState(false)
 
   const { isAuth, session, status, setAuthState } = useAuthStore()
-
-  console.log('session:  ', session)
-  console.log('status:  ', status)
-
+  
+  console.log('Header - session:  ', session)
+  console.log('Header - status:  ', status)
 
   const getNavBarItems = () => {
     return siteConfigs.navBarItems.map(menuItem => {
@@ -47,51 +46,50 @@ export default function Header() {
     })
   }
 
-  const handelLoginClose = () => {
-    setIsLoginOpen(!isLoginOpen)
-  }
 
 
   return (
-    <Navbar className={`h-[${layoutConfig.header.height}]`}>
-      <NavbarBrand>
-        <Link href={"/"} className=" gap-1">
-          <Logo />
-          <p className="font-bold text-inherit">ISA family site</p>
-        </Link>
-      </NavbarBrand>
+    <header style={{ height: `${layoutConfig.header.height}` }}>
+      <Navbar className={`h-[${layoutConfig.header.height}]`}>
+        <NavbarBrand>
+          <Link href={"/"} className=" gap-1">
+            <Logo />
+            <p className="font-bold text-inherit">ISA family site</p>
+          </Link>
+        </NavbarBrand>
 
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        {getNavBarItems()}
-      </NavbarContent>
+        <NavbarContent className="hidden sm:flex gap-4" justify="center">
+          {getNavBarItems()}
+        </NavbarContent>
 
 
-      <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Link href="#"> </Link>
-        </NavbarItem>
-        {isAuth && <p>Hello, {session?.user?.name}!</p>
-        }
-        {isAuth
-          ? <> <NavbarItem>
-            <SignOutBtn onSignOut={handelLoginClose} />
+        <NavbarContent justify="end">
+          <NavbarItem className="hidden lg:flex">
+            <Link href="#"> </Link>
           </NavbarItem>
-          </>
-
-          : <>
-            <NavbarItem>
-              <Button variant="shadow" className="bg-purple-500 text-purple-50 font-mono font-bold italic" onPress={() => { setIsSignUpOpen(true) }}>
-                Sign Up <SignUpBtn isFormOpen={isSignUpOpen} onFormClose={() => setIsSignUpOpen(!isSignUpOpen)} />
-              </Button>
+          {isAuth && <p>Hello, {session?.user?.name}!</p>
+          }
+          {isAuth
+            ? <> <NavbarItem>
+              <SignOutBtn onSignOut={setAuthState} />
             </NavbarItem>
+            </>
 
-            <NavbarItem>
-              <Button variant="shadow" className="bg-pink-500 text-purple-50 font-mono font-bold italic" onPress={() => { setIsLoginOpen(true) }}>
-                Login <LoginBtn isFormOpen={isLoginOpen} onFormClose={() => setIsLoginOpen(!isLoginOpen)} />
-              </Button>
-            </NavbarItem>
-          </>}
-      </NavbarContent>
-    </Navbar>
+            : <>
+              <NavbarItem>
+                <Button variant="shadow" className="bg-purple-500 text-purple-50 font-mono font-bold italic" onPress={() => { setIsSignUpOpen(true) }}>
+                  Sign Up <SignUpBtn isFormOpen={isSignUpOpen} onFormClose={() => setIsSignUpOpen(!isSignUpOpen)} />
+                </Button>
+              </NavbarItem>
+
+              <NavbarItem>
+                <Button variant="shadow" className="bg-pink-500 text-purple-50 font-mono font-bold italic" onPress={() => { setIsLoginOpen(true) }}>
+                  Login <LoginBtn isFormOpen={isLoginOpen} onFormClose={() => setIsLoginOpen(!isLoginOpen)} />
+                </Button>
+              </NavbarItem>
+            </>}
+        </NavbarContent>
+      </Navbar>
+    </header >
   )
-} //.                  по нажатию на    Sign Up    сделать модалку. !!!!
+} 
