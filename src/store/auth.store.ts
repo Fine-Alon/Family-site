@@ -12,7 +12,7 @@ interface IUseAuthStore {
 
 export const useAuthStore = create<IUseAuthStore>((set) => ({
   isAuth: false,
-  status: "unauthenticated",
+  status: "loading",
   session: null,
 
   setAuthState: (status: AuthStatus, session: Session | null) => set({
