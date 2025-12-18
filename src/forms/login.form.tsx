@@ -1,9 +1,8 @@
 'use client'
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Form, Input, Button } from "@heroui/react"
 import { authorizeUser } from "@/actions/prisma.login"
-import { useSession } from "next-auth/react"
 
 
 interface IProps {
