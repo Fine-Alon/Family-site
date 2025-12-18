@@ -4,7 +4,6 @@ import { signIn } from "@/app/auth/auth"
 import { IFormLoginData } from "@/types/form-data"
 import prisma from "@/utils/prisma"
 import { AuthError } from "next-auth"
-import { redirect as next_nav_redirect } from "next/navigation"
 import path from "node:path"
 
 export const authorizeUser = async (formData: IFormLoginData) => {
@@ -12,18 +11,20 @@ export const authorizeUser = async (formData: IFormLoginData) => {
   const { email, password } = formData
 
   try {
+
     const result = await signIn("credentials", { email, password, redirect: false })
+
+    console.log(`\n\rResult from: ${path.basename(__filename)} --  ${result}`)
+
+    if (!result?.success) {
+      return { success: false, error: result.error || "Invalid credentials" }
+    }
 
     const user = await prisma.user.update({
       where: { email: email },
       data: { updatedAt: new Date() }
     })
     console.log('\nuser to be UPDATED: ', user)
-
-    if (result) {
-      next_nav_redirect("/")    
-    }
-
 
     return { success: result.success }
 

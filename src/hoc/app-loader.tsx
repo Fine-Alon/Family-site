@@ -17,7 +17,6 @@ const AuthSyncProvider = ({ children, }: Readonly<{ children: React.ReactNode }>
   useEffect(() => {
     console.log('\nAuthSyncProvider - status, session:  ',  status, session);
     setAuthState(status, session)
-
   }, [status, session])
 
   return <>{children}</>

@@ -1,7 +1,8 @@
 import { siteConfigs } from "@/config/app.config"
 
 const SkillsPage = () => {
-  return (   //  skills page = siteConfigs.navBarItems[1]
+  //  skills page = siteConfigs.navBarItems[1]
+  return (   
     <div><h1>{siteConfigs.navBarItems[1].content.toUpperCase()}</h1></div>
   )
 }
