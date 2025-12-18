@@ -1,5 +1,7 @@
 "use client"
 
+// this script is called while the app is loading -> SO named "app-loader"
+
 
 import { useEffect } from "react"
 import { useSession } from 'next-auth/react'

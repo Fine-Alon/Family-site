@@ -1,8 +1,9 @@
 'use client'
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Form, Input, Button } from "@heroui/react"
 import { authorizeUser } from "@/actions/prisma.login"
+import { useSession } from "next-auth/react"
 
 
 interface IProps {
@@ -13,11 +14,14 @@ export const FormLogin = ({ onFormClose }: IProps) => {
 
   const [formData, setFormData] = useState({ email: '', password: '' })
 
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     await authorizeUser(formData)
     console.log('\nAuthorize form submitted successfully', formData)
     onFormClose()
+
+    window.location.reload()
   }
   
   // TODO: correct validation
@@ -29,6 +33,7 @@ export const FormLogin = ({ onFormClose }: IProps) => {
   return (
     <Form className="w-full max-w-xs" onSubmit={handleSubmit}>
       <Input
+      // TODO: focus in inputs
         isRequired
         errorMessage="Please enter a valid email"
         label="Email"

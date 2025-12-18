@@ -66,8 +66,9 @@ export default function Header() {
         </NavbarContent>
 
 
-        {status === "loading"
+        { status === "loading"
           ? <NavbarContent className="hidden sm:flex gap-4" justify="end">
+            {/* TODO:  make nice loading */}
              <p>Loading...</p>
           </NavbarContent>
 
