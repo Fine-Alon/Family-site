@@ -7,6 +7,7 @@ import { siteConfigs } from "@/config/app.config"
 import { layoutConfig } from "@/config/layout.config"
 import { auth } from "./auth/auth"
 import AuthSyncProvider from "@/hoc/app-loader"
+import Main from "@/components/UI/main"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,23 +30,17 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
 
-  // TODO: логика при и без сессии ?
   const session = await auth()
 
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased w-full`}
       >
         <Providers session={session}>
           <AuthSyncProvider>
             <Header />
-            <main className={`flex flex-col w-full justify-center items-center`}
-              style={{
-                height: `calc(100vh - ${layoutConfig.header.height} - ${layoutConfig.footer.height})`
-              }}>
-              {children}
-            </main>
+            <Main>{children}</Main>
             <footer className={`flex justify-center items-center`} style={{ height: `${layoutConfig.footer.height}` }}>
               <p>REMINDER FOR YOURSELF TAKE EVERYTHING EASER, make randomizer with fraises</p>
             </footer>
