@@ -38,5 +38,8 @@ export const siteConfigs = {
             Welcome aboard—can’t wait to see you crush your goals! 🚀`
     }
   },
+  notFound: {
+    PageContent: `Oops! Content not found… or maybe it’s still in the works 😅`
+  }
 }
 

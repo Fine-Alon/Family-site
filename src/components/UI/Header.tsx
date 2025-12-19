@@ -49,8 +49,6 @@ export default function Header() {
     })
   }
 
-
-
   return (
     <header style={{ height: `${layoutConfig.header.height}` }}>
       <Navbar className={`h-[${layoutConfig.header.height}]`}>

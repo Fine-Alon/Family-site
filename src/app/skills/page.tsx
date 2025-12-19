@@ -1,3 +1,5 @@
+"use client"
+
 import PageContent from "@/components/common/page-content"
 import { siteConfigs } from "@/config/app.config"
 
