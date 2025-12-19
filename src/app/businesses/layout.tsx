@@ -6,7 +6,7 @@ interface IProps {
 
 const LayoutBusinesses: FC<IProps> = ({ children }) => {
   return <>
-    <section>{children}</section>
+    <section className="h-full flex flex-col">{children}</section>
   </>
 }
 

@@ -14,7 +14,7 @@ const PageContent = () => {
   }
 
   return <>
-    <div><h3>{currentPage.content}</h3></div>
+    <div className="m-auto"><h3>{currentPage.content}</h3></div>
   </>
 }
 

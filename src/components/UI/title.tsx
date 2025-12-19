@@ -15,9 +15,8 @@ const Title = () => {
   }
 
   return <>
-    {/* TODO: styles middeling */}
-    <div>
-      <h1>{currentPage.title.toUpperCase()}</h1>
+    <div className="flex items-start mx-auto">
+      <h1 className="text-2xl font-bold tracking-wide uppercase">{currentPage.title.toUpperCase()}</h1>
     </div>
   </>
 }

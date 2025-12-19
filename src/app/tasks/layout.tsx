@@ -7,7 +7,7 @@ interface IProps {
 }
 const LayoutTasks:FC<IProps> = ({children})=>{
   return <>
-    <section>{children}</section>
+    <section  className="h-full flex flex-col">{children}</section>
   </>
 }
 

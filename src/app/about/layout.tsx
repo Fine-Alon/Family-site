@@ -6,9 +6,7 @@ interface IProps {
 
 
 const AboutLayout: FC<IProps> = ({ children }) => {
-  return <section>
-    {children}
-  </section>
+  return <section className="h-full flex flex-col"> {children}</section>
 }
 
 export default AboutLayout
