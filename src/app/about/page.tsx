@@ -1,13 +1,11 @@
 "use client"
 
 import PageContent from "@/components/common/page-content"
-import { siteConfigs } from "@/config/app.config"
+import Title from "@/components/UI/title"
 
 const AboutPage = () => {
-  // about page = siteConfigs.navBarItems[0]
   return <>
-  {/* TODO: Make component <Title> instead of line below  */}
-    <div><h1>{(siteConfigs.navBarItems[0]['content']).toUpperCase()}</h1></div>
+    <Title />
     <PageContent />
   </>
 }

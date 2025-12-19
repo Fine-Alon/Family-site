@@ -12,20 +12,25 @@ export const siteConfigs = {
   ],
 
   pagesContent: {
+
     '/': {
+      title: 'home',
       content: 'тут будет цветной график пицца с данными из skills.'
     },
     
     '/skills': {
+      title: 'skills',
       content: `тут будет форма для выбора скила за которым хочется наблюдать.
        1 - сам скилл, 2 - его предел в 100%, 3 - кол-во % на текущий момент`
     },
 
     '/tasks': {
+      title: 'tasks',
       content: `долгосрочный todo лист`
     },
 
     '/about': {
+      title: 'about',
       content: `Hey! 🎉 I’m really happy you’ve joined this awesome app!
             Big congrats on taking the next step and growing yourself alongside a huge community
             of people who love tracking their own progress—whether it’s new skills 📈, habits, 
@@ -36,8 +41,13 @@ export const siteConfigs = {
             Plus, we’ve got those cool pizza charts 🍕 for a more pleasant experience
             and a quick glance at the things that matter most to you. 💪
             Welcome aboard—can’t wait to see you crush your goals! 🚀`
+    },
+    '/businesses': {
+      title: `businesses`,
+      content: `your content as youtube...`
     }
   },
+
   notFound: {
     PageContent: `Oops! Content not found… or maybe it’s still in the works 😅`
   }
