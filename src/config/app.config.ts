@@ -4,6 +4,18 @@ export const siteConfigs = {
     description: "It is not important part here cose it is my own app NOT for searching by bots",
   },
 
+  quotes: [
+    "You’ve got this!",
+    "Progress, not perfection.",
+    "Success is the sum of small efforts.",
+    "Do it scared.",
+    "Keep going. Everything you need will come to you at the right time.",
+    "Your only limit is your mind.",
+    "Small steps every day lead to big results.",
+    "Believe you can and you’re halfway there."
+  ],
+  quotesDuration: 10000,
+
   navBarItems: [
     { href: '/about', content: 'about' },
     { href: '/skills', content: 'skills' },
@@ -17,7 +29,7 @@ export const siteConfigs = {
       title: 'home',
       content: 'тут будет цветной график пицца с данными из skills.'
     },
-    
+
     '/skills': {
       title: 'skills',
       content: `тут будет форма для выбора скила за которым хочется наблюдать.
@@ -44,7 +56,7 @@ export const siteConfigs = {
     },
     '/businesses': {
       title: `businesses`,
-      content: `your content as youtube...`
+      content: `your content like a gym or youtube...`
     }
   },
 

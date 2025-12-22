@@ -4,10 +4,10 @@ import "./globals.css"
 import { Providers } from "@/providers/provider"
 import Header from "@/components/UI/header"
 import { siteConfigs } from "@/config/app.config"
-import { layoutConfig } from "@/config/layout.config"
 import { auth } from "./auth/auth"
 import AuthSyncProvider from "@/hoc/app-loader"
 import Main from "@/components/UI/main"
+import Footer from "@/components/UI/footer/footer"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,9 +41,7 @@ export default async function RootLayout({
           <AuthSyncProvider>
             <Header />
             <Main>{children}</Main>
-            <footer className={`flex justify-center items-center`} style={{ height: `${layoutConfig.footer.height}` }}>
-              <p>REMINDER FOR YOURSELF TAKE EVERYTHING EASER, make randomizer with fraises</p>
-            </footer>
+            <Footer />
           </AuthSyncProvider>
         </Providers>
 
