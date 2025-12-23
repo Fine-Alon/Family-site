@@ -3,6 +3,8 @@ export const siteConfigs = {
     title: "Welcome home ISA",
     description: "It is not important part here cose it is my own app NOT for searching by bots",
   },
+  
+  authorizedOnlyPages:['tasks'],
 
   quotes: [
     "You’ve got this!",
