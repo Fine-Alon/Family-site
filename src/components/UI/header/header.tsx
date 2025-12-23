@@ -5,12 +5,12 @@ import { layoutConfig } from "@/config/layout.config"
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Button } from "@heroui/react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import SignUpBtn from "../modals/sign-up"
 import { useEffect, useState } from "react"
-import LoginBtn from "../modals/login"
-import { SignOutBtn } from "./sign-out-btn"
 import { useAuthStore } from "@/store/auth.store"
-import { Logo } from "./logo"
+import { SignOutBtn } from "./sign-out-btn"
+import SignUpBtn from "@/components/modals/sign-up"
+import LoginBtn from "@/components/modals/login"
+import { Logo } from "../logo"
 
 
 
