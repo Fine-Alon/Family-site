@@ -1,13 +1,15 @@
-import { object, string } from "zod"
- 
-//  TODO: мигрировать zod на v3 новый синтаксис
+ //  TODO: мигрировать zod на v3 новый синтаксис
 
-export const signInSchema = object({
-  email: string({ required_error: "Email is required" })
+import { z } from "zod"
+
+export const signInSchema = z.object({
+  email: z
+    .string()
     .min(1, "Email is required")
     .email("Invalid email"),
-  password: string({ required_error: "Password is required" })
+  password: z
+    .string()
     .min(1, "Password is required")
-    .min(6, "Password must be more than 8 characters")
+    .min(5, "Password must be more than 5 characters") // ← исправил: было "more than 8", но min(6)
     .max(32, "Password must be less than 32 characters"),
-}) 
+})
