@@ -1,7 +1,7 @@
 'use client'
 
 import BackHomeBtn from '@/components/common/back-home-btn'
-import WarningSign from '@/helpers/warning_sign'
+import WarningSign from '@/components/common/warning_sign'
 import { useSearchParams } from 'next/navigation'
 
 

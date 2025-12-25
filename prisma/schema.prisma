@@ -1,6 +1,8 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
+
+  // this output was preventing deploy by vercel
+  // output   = "../src/generated/prisma"
 }
 
 
