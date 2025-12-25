@@ -4,10 +4,10 @@ import "./globals.css"
 import { Providers } from "@/providers/provider"
 import { siteConfigs } from "@/config/app.config"
 import { auth } from "./auth/auth"
-import AuthSyncProvider from "@/hoc/app-loader"
 import Main from "@/components/UI/main"
 import Footer from "@/components/UI/footer/footer"
 import Header from "@/components/UI/header/header"
+import AppLoader from "@/hoc/app-loader"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,11 +38,11 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased w-full`}
       >
         <Providers session={session}>
-          <AuthSyncProvider>
+          <AppLoader>
             <Header />
             <Main>{children}</Main>
             <Footer />
-          </AuthSyncProvider>
+          </AppLoader>
         </Providers>
 
       </body>

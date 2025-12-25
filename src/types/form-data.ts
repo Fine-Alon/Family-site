@@ -11,3 +11,6 @@ export interface IFormLoginData {
   email: string
   password: string
 }
+
+
+// TODO: add types in next files - user, skills, task, business, 

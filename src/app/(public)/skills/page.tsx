@@ -1,14 +1,13 @@
 "use client"
 
 import PageContent from "@/components/common/page-content"
-import Title from "@/components/UI/title"
+import Title from "@/components/common/title"
 
-
-const BusinessesPage = () => {
+const SkillsPage = () => {
   return <>
     <Title />
     <PageContent />
   </>
 }
 
-export default BusinessesPage
+export default SkillsPage

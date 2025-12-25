@@ -1,6 +1,6 @@
 'use client'
 
-import BackHomeBtn from '@/components/UI/back-home-btn'
+import BackHomeBtn from '@/components/common/back-home-btn'
 import WarningSign from '@/helpers/warning_sign'
 
 

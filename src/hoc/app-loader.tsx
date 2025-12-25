@@ -9,17 +9,18 @@ import { useAuthStore } from "@/store/auth.store"
 
 
 
-const AuthSyncProvider = ({ children, }: Readonly<{ children: React.ReactNode }>) => {
+const AppLoader = ({ children, }: Readonly<{ children: React.ReactNode }>) => {
 
   const { data: session, status } = useSession()
   const { setAuthState } = useAuthStore()
 
+  // Auth sync provider
   useEffect(() => {
     console.log('\nAuthSyncProvider - status, session:  ',  status, session);
     setAuthState(status, session)
-  }, [status, session])
+  }, [status, session, setAuthState])
 
   return <>{children}</>
 }
 
-export default AuthSyncProvider
+export default AppLoader

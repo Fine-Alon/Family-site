@@ -8,6 +8,7 @@ export const siteConfigs = {
 
   quotes: [
     "You’ve got this!",
+    "That to which you respond calmly does not control you.",
     "Progress, not perfection.",
     "Success is the sum of small efforts.",
     "Do it scared.",
