@@ -8,6 +8,7 @@ export const siteConfigs = {
 
   quotes: [
     "You’ve got this!",
+    "Small managed steps, make a big difference",
     "That to which you respond calmly does not control you.",
     "Progress, not perfection.",
     "Success is the sum of small efforts.",

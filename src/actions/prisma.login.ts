@@ -14,8 +14,6 @@ export const authorizeUser = async (formData: IFormLoginData) => {
 
     const result = await signIn("credentials", { email, password, redirect: false })
 
-    console.log(`\n\rResult from: ${path.basename(__filename)} --  ${result}`)
-
     if (!result?.success) {
       return { success: false, error: result.error || "Invalid credentials" }
     }
@@ -24,12 +22,10 @@ export const authorizeUser = async (formData: IFormLoginData) => {
       where: { email: email },
       data: { updatedAt: new Date() }
     })
-    console.log('\nuser to be UPDATED: ', user)
 
     return { success: result.success }
 
   } catch (error) {
-    console.log(`\n\nError in ${path.basename(__filename)}`)
     console.log('\nerror:  ', error)
 
     if (error instanceof AuthError) {

@@ -35,7 +35,6 @@ export const registerUser = async (formData: IFormRegData) => {
       }
     })
 
-    console.log('\n User to be REGISTERED: ', user)
     return user
 
   } catch (error) {
