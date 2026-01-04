@@ -4,14 +4,17 @@ import { siteConfigs } from './config/app.config'
 
 // This middleware/proxy function can be marked `async` if using `await` inside
 export const proxy = async (request: NextRequest) => {
+  const isProd = process.env.NODE_ENV === 'production'
 
   // authjs.session-token JWT from cookie
-  const sessionToken = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET })
+  const sessionToken = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET, secureCookie: isProd })
 
-  console.log('Vercel: has AUTH_SECRET?', !!process.env.AUTH_SECRET,
-     'Vercel: has NEXTAUTH_SECRET?', !!process.env.NEXTAUTH_SECRET,
-     'Vercel: has sessionToken?', sessionToken)
-     
+
+
+  console.log('token: ', sessionToken ? 'exist' : 'token лох',
+    'NEXTAUTH_SECRET?', !!process.env.NEXTAUTH_SECRET,
+    'sessionToken?', sessionToken)  // возможно тут проблема нежелательного редиректа
+
   const url = new URL('/no-access', request.url)
 
   if (!sessionToken) {
