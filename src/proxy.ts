@@ -9,12 +9,9 @@ export const proxy = async (request: NextRequest) => {
   // authjs.session-token JWT from cookie
   const sessionToken = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET, secureCookie: isProd })
 
-
-  console.log('sessionToken?', sessionToken)
-
   const url = new URL('/no-access', request.url)
 
-  if (!sessionToken?.name) {
+  if (!sessionToken?.name) {        // sessionToken equal to: null or obj
     url.searchParams.set('message', `page ${siteConfigs.authorizedOnlyPages}`)
     return NextResponse.redirect(url)
   }
