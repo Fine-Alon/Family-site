@@ -14,7 +14,7 @@ export const proxy = async (request: NextRequest) => {
 
   const url = new URL('/no-access', request.url)
 
-  if (!!sessionToken) {
+  if (sessionToken?.name) {
     url.searchParams.set('message', `page ${siteConfigs.authorizedOnlyPages}`)
     return NextResponse.redirect(url)
   }
