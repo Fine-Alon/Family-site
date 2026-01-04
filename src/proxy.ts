@@ -10,14 +10,11 @@ export const proxy = async (request: NextRequest) => {
   const sessionToken = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET, secureCookie: isProd })
 
 
-
-  console.log('token: ', sessionToken ? 'exist' : 'token лох',
-    'NEXTAUTH_SECRET?', !!process.env.NEXTAUTH_SECRET,
-    'sessionToken?', sessionToken)  // возможно тут проблема нежелательного редиректа
+  console.log('sessionToken?', sessionToken)
 
   const url = new URL('/no-access', request.url)
 
-  if (sessionToken) {
+  if (!!sessionToken) {
     url.searchParams.set('message', `page ${siteConfigs.authorizedOnlyPages}`)
     return NextResponse.redirect(url)
   }
