@@ -8,9 +8,10 @@ export const proxy = async (request: NextRequest) => {
   // authjs.session-token JWT from cookie
   const sessionToken = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET })
 
-  console.log('Vercel: has AUTH_SECRET?', !!process.env.AUTH_SECRET)
-  console.log('Vercel: has NEXTAUTH_SECRET?', !!process.env.NEXTAUTH_SECRET)
-
+  console.log('Vercel: has AUTH_SECRET?', !!process.env.AUTH_SECRET,
+     'Vercel: has NEXTAUTH_SECRET?', !!process.env.NEXTAUTH_SECRET,
+     'Vercel: has sessionToken?', sessionToken)
+     
   const url = new URL('/no-access', request.url)
 
   if (!sessionToken) {
