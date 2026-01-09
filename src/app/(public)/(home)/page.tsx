@@ -1,18 +1,46 @@
 "use client"
 
 import SkillProgress from "@/components/common/progress-bar"
-import Image from "next/image"
+import { Card, CardBody, Tab, Tabs } from "@heroui/react"
 
-{/* TODO: add. <div><h2>debugging skills 90%</h2></div>  */ }
 export default function Home() {
   return <>
-    <SkillProgress radius="sm" value={90} size="lg" label="Debugging skills" key={"debugging skills"} />
-    <SkillProgress radius="sm" value={70} size="lg" label="Soft skills" key={"Lose weight"} />
-    <SkillProgress radius="sm" value={30} size="lg" label="React" key={"Lose weight"} />
-    <SkillProgress radius="sm" value={10} size="lg" label="DevOps" key={"Lose weight"} />
-    <SkillProgress radius="sm" value={60} size="lg" label="Next" key={"Lose weight"} />
-    <SkillProgress radius="sm" value={100} size="lg" label="Back end" key={"Lose weight"} />
-    <SkillProgress radius="sm" value={100} size="lg" label="Front end" key={"Lose weight"} />
 
+      <div className="flex w-full h-full flex-col self-start items-start pt-22" >
+       <div className="inline-flex shadow-xl/50 shadow-purple-700 rounded-2xl">
+         <Tabs aria-label="Options" placement={"top"} color="secondary" classNames={{panel:"pb-0"}}>
+          <Tab key="hard-skills" title="Hard Skills">
+            <Card>
+              <CardBody className="bg-dan">
+                <SkillProgress radius="sm" value={30} size="lg" label="React" key={"React"} />
+                <SkillProgress radius="sm" value={60} size="lg" label="Next" key={"Next"} />
+                <SkillProgress radius="sm" value={10} size="lg" label="DevOps" key={"DevOps"} />
+                <SkillProgress radius="sm" value={90} size="lg" label="Debugging" key={"debugging"} />
+              </CardBody>
+            </Card>
+          </Tab>
+          <Tab key="personal" title="Personal">
+            <Card>
+              <CardBody>
+                <SkillProgress radius="sm" value={70} size="lg" label="Soft skills" key={"Soft skills"} />
+                <SkillProgress radius="sm" value={100} size="lg" label="English" key={"English"} />
+              </CardBody>
+            </Card>
+          </Tab>
+          <Tab key="hobby" title="Hobby">
+            <Card>
+              <CardBody>
+                <SkillProgress radius="sm" value={100} size="lg" label="Youtube" key={"Youtube"} />
+              </CardBody>
+            </Card>
+          </Tab>
+        </Tabs>
+       </div>
+      </div>
+
+
+    <h2>Developing</h2>
+    <h2>Personal</h2>
+    <h2>Youtube</h2>
   </>
 }
