@@ -14,11 +14,11 @@ const SkillProgress: FC<IProps> = ({ size, label, value, radius }) => {
   return (
     <Progress
       classNames={{
-        base: "max-w-sm",
-        track: "drop-shadow-md shadow-xl/20 shadow-zinc-700 border border-default",
-        indicator: "bg-linear-to-r from-pink-500 to-yellow-500",
-        label: "tracking-widest font-semibold text-lg text-black/70",
-        value: "text-black/60",
+        base: "max-w-sm pb-7 ",
+        track: "bg-fuchsia-200 drop-shadow-md shadow-xl/20 shadow-zinc-700 border border-default",
+        indicator: "bg-linear-to-r from-fuchsia-600 to-rose-500",
+        label: "tracking-widest text-lg text-black/70",
+        value: "text-white/30",labelWrapper:"pb-0"
       }}
 
       label={label ? label : null}
