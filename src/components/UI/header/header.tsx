@@ -50,51 +50,53 @@ export default function Header() {
   }
 
   return (
-    <Navbar className={`h-[${layoutConfig.header.height}]`}>
-      <NavbarBrand>
-        <Link href={"/"} className=" gap-1">
-          <Logo />
-          <p className="font-bold text-inherit">ISA family site</p>
-        </Link>
-      </NavbarBrand>
+      <div className="max-w-5xl mx-auto">
+        <Navbar className={`h-[${layoutConfig.header.height}, shadow-xl/30 shadow-purple-700`}>
+          <NavbarBrand>
+            <Link href={"/"} className=" gap-1">
+              <Logo />
+              <p className="font-bold text-inherit">ISA family site</p>
+            </Link>
+          </NavbarBrand>
 
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        {getNavBarItems()}
-      </NavbarContent>
+          <NavbarContent className="hidden sm:flex gap-4" justify="center">
+            {getNavBarItems()}
+          </NavbarContent>
 
 
-      {status === "loading"
-        ? <NavbarContent className="hidden sm:flex gap-4" justify="end">
-          {/* TODO:  make nice loading */}
-          <p>Loading...</p>
-        </NavbarContent>
+          {status === "loading"
+            ? <NavbarContent className="hidden sm:flex gap-4" justify="end">
+              {/* TODO:  make nice loading */}
+              <p>Loading...</p>
+            </NavbarContent>
 
-        : <NavbarContent justify="end">
-          <NavbarItem className="hidden lg:flex">
-            <Link href="#"> </Link>
-          </NavbarItem>
-          {status === "authenticated"
-            ? <>
-              <p>Hello, {session?.user?.name}!</p>
-              <NavbarItem>
-                <SignOutBtn onSignOut={setAuthState} />
+            : <NavbarContent justify="end">
+              <NavbarItem className="hidden lg:flex">
+                <Link href="#"> </Link>
               </NavbarItem>
-            </>
+              {status === "authenticated"
+                ? <>
+                  <p>Hello, {session?.user?.name}!</p>
+                  <NavbarItem>
+                    <SignOutBtn onSignOut={setAuthState} />
+                  </NavbarItem>
+                </>
 
-            : <>
-              <NavbarItem>
-                <Button variant="shadow" className="bg-purple-500 text-purple-50 font-mono font-bold italic" onPress={() => { setIsSignUpOpen(true) }}>
-                  Sign Up <SignUpBtn isFormOpen={isSignUpOpen} onFormClose={() => setIsSignUpOpen(!isSignUpOpen)} />
-                </Button>
-              </NavbarItem>
+                : <>
+                  <NavbarItem>
+                    <Button variant="shadow" className="bg-purple-500 text-purple-50 font-mono font-bold italic" onPress={() => { setIsSignUpOpen(true) }}>
+                      Sign Up <SignUpBtn isFormOpen={isSignUpOpen} onFormClose={() => setIsSignUpOpen(!isSignUpOpen)} />
+                    </Button>
+                  </NavbarItem>
 
-              <NavbarItem>
-                <Button variant="shadow" className="bg-pink-500 text-purple-50 font-mono font-bold italic" onPress={() => { setIsLoginOpen(true) }}>
-                  Login <LoginBtn isFormOpen={isLoginOpen} onFormClose={() => setIsLoginOpen(!isLoginOpen)} />
-                </Button>
-              </NavbarItem>
-            </>}
-        </NavbarContent>}
-    </Navbar>
+                  <NavbarItem>
+                    <Button variant="shadow" className="bg-pink-500 text-purple-50 font-mono font-bold italic" onPress={() => { setIsLoginOpen(true) }}>
+                      Login <LoginBtn isFormOpen={isLoginOpen} onFormClose={() => setIsLoginOpen(!isLoginOpen)} />
+                    </Button>
+                  </NavbarItem>
+                </>}
+            </NavbarContent>}
+        </Navbar>
+      </div>
   )
 } 
