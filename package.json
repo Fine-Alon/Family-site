@@ -7,7 +7,8 @@
     "build": "prisma generate && next build",
     "start": "next start",
     "lint": "eslint",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "test:e2e": "REPORT_FILE=reports/report_$(date +%Y%m%d_%H%M%S).html && mkdir -p reports && pytest e2e-tests/ --html=$REPORT_FILE && open $REPORT_FILE"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.1",
