@@ -47,16 +47,40 @@ export const siteConfigs = {
 
     '/about': {
       title: 'about',
-      content: `Hey! 🎉 I’m really happy you’ve joined this awesome app!
-            Big congrats on taking the next step and growing yourself alongside a huge community
-            of people who love tracking their own progress—whether it’s new skills 📈, habits, 
-            or little reminders to not forget the important stuff. 🔔
-            We all enjoy hanging out here because of the clean, modern, super user-friendly 
-            design and the fast, responsive interface that just feels smooth. 
-            Go ahead—click on every button you see and explore, it’s fun, I promise haha! 😄
-            Plus, we’ve got those cool pizza charts 🍕 for a more pleasant experience
-            and a quick glance at the things that matter most to you. 💪
-            Welcome aboard—can’t wait to see you crush your goals! 🚀`
+      content: `<article>
+                    <p>  Hey!  🎉 <br /> I’m really happy you’ve joined this awesome <strong><em> Portal </em></strong>😌  </p>
+                    <br />
+                    <p>
+                      Big congrats on taking the next step and growing yourself alongside a 
+                      <strong>huge community</strong> of people who love tracking their 
+                      own progress - whether it’s <em>new skills</em> 📈, habits, or little reminders 
+                      to not forget the important stuff 🔔, 
+                    </p>
+                    <br />            
+                    <blockquote>
+                            
+                      <ul>
+                          <li>
+                            <strong> We </strong> all enjoy hanging out here because 
+                              of the clean, modern, super user-friendly design and the fast, responsive
+                              interface that just feels smooth.
+                          </li>
+                          <li>
+                            <strong> Plus  </strong> , we’ve got those cool pizza charts 🍕,
+                              for a more pleasant experience and a quick 
+                              glance at the things that matter most to you.
+                          </li>
+                      </ul>
+
+                      <p>
+                          <strong> Go ahead </strong> — click on every button you see and explore, it’s fun,
+                          <em> I promise haha!</em> 😄 <br /> 
+                          <strong> Welcome aboard </strong> — can’t wait to see you <strong>crush your goals!</strong> 🚀 
+                          <br /><br />
+                          <strong><em> Start Exploring </em> </strong> ...
+                      </p>
+                  </blockquote>
+              </article>`
     },
     '/businesses': {
       title: `businesses`,

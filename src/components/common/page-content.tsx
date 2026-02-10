@@ -2,6 +2,9 @@
 
 import { siteConfigs } from "@/config/app.config"
 import { usePathname } from "next/navigation"
+import parse from 'html-react-parser'
+import DOMPurify from "isomorphic-dompurify"
+
 
 const PageContent = () => {
   // const pathname = usePathname() as keyof typeof siteConfigs.pagesContent
@@ -13,9 +16,11 @@ const PageContent = () => {
     return <p>{siteConfigs.notFound.PageContent}</p>
   }
 
+  const cleanHTML = DOMPurify.sanitize(currentPage.content)
+
   return <>
-    <div className="m-auto"><h3>{currentPage.content}</h3></div>
+    <div className="m-auto"><h3>{parse(cleanHTML)}</h3></div>
   </>
 }
-
+ 
 export default PageContent
