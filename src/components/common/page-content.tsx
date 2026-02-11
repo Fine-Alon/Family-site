@@ -4,7 +4,9 @@ import { siteConfigs } from "@/config/app.config"
 import { usePathname } from "next/navigation"
 import parse from 'html-react-parser'
 import DOMPurify from "isomorphic-dompurify"
+import SkillsForm from "@/forms/skills.form"
 
+// TODO: Add LLM to check if the input value is normal existing word 
 
 const PageContent = () => {
   // const pathname = usePathname() as keyof typeof siteConfigs.pagesContent
@@ -19,6 +21,7 @@ const PageContent = () => {
   const cleanHTML = DOMPurify.sanitize(currentPage.content)
 
   return <>
+    <SkillsForm />
     <div className="m-auto"><h3>{parse(cleanHTML)}</h3></div>
   </>
 }
