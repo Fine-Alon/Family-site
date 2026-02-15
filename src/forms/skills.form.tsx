@@ -14,7 +14,7 @@ function validateSkillName(name: string) {
 
 export const SkillsForm = ({ }: IProps) => {
 
-  const [step, setStep] = React.useState(1)
+  const [step, setStep] = React.useState<1 | 2>(1)
   const [errors, setErrors] = React.useState({})
   const [skillName, setSkillName] = React.useState('')
 
@@ -24,12 +24,10 @@ export const SkillsForm = ({ }: IProps) => {
 
   const onSubmit = (e) => {
     e.preventDefault()
-
     const data = Object.fromEntries(new FormData(e.currentTarget))
 
     if (!data.skill) {
       setErrors({ skill: "Skill is required" })
-
       return
     }
 
@@ -39,48 +37,42 @@ export const SkillsForm = ({ }: IProps) => {
   }
 
   return <>
-    {step === 1 && <Form
-      className="w-full max-w-xs flex flex-col gap-3 pt-2"
+    <Form
+      className={step === 1
+        ? 'w-full max-w-xs flex flex-col gap-3 pt-2'
+        : 'w-full max-w-xs flex flex-col gap-3'}
       validationErrors={errors}
-      onSubmit={onSubmit}
+      onSubmit={step === 1 ? (e) => e.preventDefault() : onSubmit}
     >
-      <Input
-        label="⚙️⚙️⚙️ SKILL:"
+      {step === 1 && <Input
+        label={`SKILL: ⚙️ ${skillName || "⚙️"} ⚙️`}
         labelPlacement="outside"
         name="skill"
         placeholder=" skill's name"
         classNames={{
-          label: "font-bold uppercase tracking-widest text-md", // Ваши стили тут
+          label: "font-bold uppercase tracking-widest text-md",
           input: "placeholder:italic",
           inputWrapper: "bg-[#FFFFF0]"
         }}
         onChange={(e) => setSkillName(e.target.value)}
-      />
+      />}
 
+      {step === 2 && <SkillSlider label={skillName} />}
       <Button
-        type="submit"
-        variant="flat" onPress={handleNextStep}
-        size="lg"
-        radius="md"
-        className="bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500
-         text-white shadow-lg shadow-indigo-500/30 px-6 font-semibold hover:opacity-90 
-         transition-opacity"> Add SKILL ⚙️ </Button>
-    </Form>}
-    {step === 2 && <Form
-      className="w-full max-w-xs flex flex-col gap-3"
-      validationErrors={errors}
-      onSubmit={onSubmit}
-    >
-      <SkillSlider label={skillName} />
-      <Button
-        type="submit"
+        type={step === 1 ? "button" : "submit"}
         variant="flat"
+        onPress={step === 1 ? handleNextStep : undefined}
         size="lg"
         radius="md"
-        className="bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500
-         text-white shadow-lg shadow-indigo-500/30 px-6 font-semibold hover:opacity-90
-          transition-opacity"> Confirm 🚀 </Button>
-    </Form>}
+        className="bg-linear-to-tr from-indigo-500 via-purple-500 to-pink-500
+         text-white shadow-lg shadow-indigo-500/30 px-6 font-semibold hover:opacity-90 
+         transition-opacity active:scale-95 duration-200">
+        <span className="animate-in fade-in zoom-in-95 duration-300">
+          {step === 1 ? "ADD SKILL" : "CONFIRM 🚀"}
+        </span> </Button>
+
+    </Form>
+
   </>
 }
 

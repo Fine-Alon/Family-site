@@ -20,7 +20,7 @@ export const SkillSlider: FC<IProps> = ({ label }) => {
       defaultValue={30}
       label={
       <span>
-        {label} &nbsp;&nbsp; PROGRESS:
+        PROGRESS:&nbsp;&nbsp;{label}  
       </span>}
       renderThumb={(props) => (
         <div
