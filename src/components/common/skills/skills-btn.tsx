@@ -2,13 +2,15 @@ import { Button } from "@heroui/react"
 import React from "react"
 
 interface IProps {
+  isDisabled: boolean
   step: number
   handleNextStep: () => void
 }
 
-export const SkillBtn: React.FC<IProps> = ({ step, handleNextStep }) => {
+export const SkillBtn: React.FC<IProps> = ({ isDisabled, step, handleNextStep }) => {
   return <>
     <Button
+      isDisabled={isDisabled}
       type={step === 1 ? "button" : "submit"}
       variant="flat"
       onPress={step === 1 ? handleNextStep : undefined}

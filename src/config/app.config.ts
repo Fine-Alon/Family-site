@@ -36,6 +36,7 @@ export const siteConfigs = {
 
     '/skills': {
       title: 'skills',
+      progressInitialState: 33,
       content: `тут будет форма для выбора скила за которым хочется наблюдать.
        1 - сам скилл, 2 - его предел в 100%, 3 - кол-во % на текущий момент`
     },

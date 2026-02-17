@@ -3,25 +3,33 @@
 import { Slider } from "@heroui/react"
 import { FC } from "react"
 
+// TODO: Add tooltip with explanation 'choice your current progress in that skill'
+
 interface IProps {
+  skillProgress: number
+  setSkillProgress: (value: number) => void
   label: string
 }
 
-export const SkillSlider: FC<IProps> = ({ label }) => {
+export const SkillSlider: FC<IProps> = ({ skillProgress, setSkillProgress, label }) => {
+  const handleChangeEnd = (value: number | number[]) => typeof value === 'number' && setSkillProgress(value) 
+
   return (
     <Slider
+      name="progress"
       color="secondary"
+      onChangeEnd={handleChangeEnd}
       classNames={{
         label: "font-bold uppercase tracking-widest text-md",
         base: "max-w-md gap-3",
         track: "bg-[#FFFFF0] border-s-secondary-100",
         filler: "bg-linear-to-r from-secondary-200 to-secondary-500",
       }}
-      defaultValue={30}
+      defaultValue={skillProgress}
       label={
-      <span>
-        PROGRESS:&nbsp;&nbsp;{label}  
-      </span>}
+        <span>
+          PROGRESS:&nbsp;&nbsp;{label}
+        </span>}
       renderThumb={(props) => (
         <div
           {...props}

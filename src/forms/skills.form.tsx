@@ -6,35 +6,43 @@ import SkillSlider from "@/components/common/skills/skills-slider"
 import { Form } from "@heroui/react"
 import React from "react"
 
-interface IProps { }
 
 function validateSkillName(name: string) {
-  let isValid = false
-  isValid = name.trim() ? true : false
-  return isValid
+  const len = name.trim().length
+  return len > 0 && len <= 10 
 }
 
-export const SkillsForm = ({ }: IProps) => {
+interface IProps{
+  progressInitialState: number
+}
+
+export const SkillsForm:React.FC<IProps> = ({progressInitialState}) => {
 
   const [step, setStep] = React.useState<1 | 2>(1)
-  const [errors, setErrors] = React.useState({})
   const [skillName, setSkillName] = React.useState('')
+  const [skillProgress, setSkillProgress] = React.useState(progressInitialState)
+  const [errors, setErrors] = React.useState({})
 
-  const handleNextStep = () => { if (validateSkillName(skillName)) setStep(2) }
+  const isSkillNameValid =  validateSkillName(skillName)
+  const isDisabled = !isSkillNameValid
+
+  const handleNextStep = () => isSkillNameValid && setStep(2) 
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const data = Object.fromEntries(new FormData(e.currentTarget))
 
-    console.log("data: ", data);
-    
-
-    if (!data.skill) {
-      setErrors({ skill: "Skill is required" })
-      return
+    const dataFromForm = Object.fromEntries(new FormData(e.currentTarget))
+    const finalData = {
+      ...dataFromForm,
+      skill: skillName,
+      progress: skillProgress
     }
 
-    const result = callServer(data)
+    console.log("dataFromForm: ", dataFromForm);
+    console.log("finalData: ", finalData);
+    
+
+    const result = callServer(finalData)
     setErrors(result.errors)
   }
 
@@ -45,9 +53,9 @@ export const SkillsForm = ({ }: IProps) => {
       onSubmit={step === 1 ? (e) => e.preventDefault() : onSubmit}  >
 
       {step === 1 && <SkillInput setSkillName={setSkillName} skillName={skillName} />}
-      {step === 2 && <SkillSlider label={skillName} />}
+      {step === 2 && <SkillSlider skillProgress={skillProgress} setSkillProgress={setSkillProgress} label={skillName} />}
 
-      <SkillBtn handleNextStep={handleNextStep} step={step} />
+      <SkillBtn isDisabled={isDisabled} handleNextStep={handleNextStep} step={step} />
     </Form>
 
   </>

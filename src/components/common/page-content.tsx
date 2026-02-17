@@ -21,7 +21,6 @@ const PageContent = () => {
   const cleanHTML = DOMPurify.sanitize(currentPage.content)
 
   return <>
-    <SkillsForm />
     <div className="m-auto"><h3>{parse(cleanHTML)}</h3></div>
   </>
 }

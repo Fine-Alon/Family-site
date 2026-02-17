@@ -10,9 +10,8 @@ interface IProps {
 
 export const SkillInput: React.FC<IProps> = ({ setSkillName, skillName }) => {
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSkillName(e.target.value)
-  }
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setSkillName(e.target.value)
+
 
   return <>
     <Input
@@ -26,6 +25,7 @@ export const SkillInput: React.FC<IProps> = ({ setSkillName, skillName }) => {
         inputWrapper: "bg-[#FFFFF0]"
       }}
       onChange={handleChange}
+      validate={(value) => (value.length > 10 ? 'Very long string to be real skill was typed' : null)}
     />
   </>
 }
